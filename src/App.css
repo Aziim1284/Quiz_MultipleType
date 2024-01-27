@@ -1,38 +1,34 @@
-.App {
-  text-align: center;
+.Box {
+    --border-size: 3px;
+    --border-angle: 0turn;
+    width: 70vmin;
+    background-image: conic-gradient(from var(--border-angle), rgba(77, 66, 88, 0.041), rgba(50, 50, 72, 0.178) 50%, rgba(64, 49, 79, 0.207)), conic-gradient(from var(--border-angle), transparent 20%, rgba(69, 157, 233, 0.316), rgba(228, 60, 94, 0.297));
+    background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-animation: bg-spin 3s linear infinite;
+    animation: bg-spin 3s linear infinite;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@-webkit-keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+    }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+    }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Box:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
 }

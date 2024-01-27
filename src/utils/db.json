@@ -1,0 +1,49 @@
+[
+  
+    {
+      "no": 1,
+      "title": "What is the capital of France?",
+      "type": "MultipleChoice",
+      "answers": [
+        { "label": "Paris", "value": true },
+        { "label": "Berlin", "value": false },
+        { "label": "Madrid", "value": true }
+      ]
+    },
+   
+    {
+      "no": 4,
+      "title": "Who wrote 'Romeo and Juliet'?",
+      "type": "SingleChoice",
+      "answers": [
+        { "label": "William Shakespeare", "value": true },
+        { "label": "Jane Austen", "value": false },
+        { "label": "Charles Dickens", "value": false }
+      ]
+    },
+    {
+      "no": 11,
+      "title": "What will be the output of 2 + ___ = 12?",
+      "type": "FillInTheBlank",
+      "answer": 10
+    },
+    {
+      "no": 12,
+      "title": "Sort below values in an Order.",
+      "type": "sortingdropdown",
+      "answers": [
+        { "label": "in 1997", "value": false },
+        { "label": "in 2010", "value": false },
+        { "label": "in 2012", "value": true }
+      ]
+    },
+    {
+      "no": 14,
+      "type":"matchMatrix"
+    },
+      {
+      "no": 144,
+       "type":"latexQuestion"
+      }
+    
+]

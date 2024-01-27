@@ -1,0 +1,6 @@
+    export const SAVEDMULTIPLE_CHOICE =localStorage.getItem("multipleChoiceState")
+    export const FILL_IN_THE_BLANK =localStorage.getItem("fiBlanksState")
+    export const SAVED_SINGLE_QUIZ =localStorage.getItem("radioState") 
+    export const SORTING_QUIZ = localStorage.getItem("sortingQuizResult")
+    export const LATEX_QUESTION_CORRECT = localStorage.getItem("latexQuestionState")
+    export const MATCH_MATRIX_QUESTION = localStorage.getItem("matchingMatrixState")
