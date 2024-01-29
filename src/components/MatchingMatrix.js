@@ -49,21 +49,15 @@ const MatchingMatrix = ({ correctAudio, incorrectAudio, isMuted }) => {
 
   const initialUserAnswers = ['', '', ''];
   const initialIsCorrect = [undefined, undefined, undefined];
-
+  const storedQUestionState = localStorage.getItem("userAnswers")
   const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
-  const [isCorrect, setIsCorrect] = useState(initialIsCorrect);
+  const [isCorrect, setIsCorrect] = useState(storedQUestionState);
   const [attempts, setAttempts] = useState(0);
 
-  // Load data from localStorage on component mount
   useEffect(() => {
-    const storedUserAnswers = localStorage.getItem('userAnswers');
-    const storedIsCorrect = localStorage.getItem('isCorrect');
-    const storedAttempts = localStorage.getItem('attempts');
-
-    if (storedUserAnswers && storedIsCorrect && storedAttempts) {
+    const storedUserAnswers = localStorage.getItem('MatchingMatrix');
+    if (storedUserAnswers ) {
       setUserAnswers(JSON.parse(storedUserAnswers));
-      setIsCorrect(JSON.parse(storedIsCorrect));
-      setAttempts(Number(storedAttempts));
     }
   }, []);
 
@@ -77,7 +71,8 @@ const MatchingMatrix = ({ correctAudio, incorrectAudio, isMuted }) => {
       const updatedIsCorrect = [...isCorrect];
       updatedIsCorrect[questionId - 1] = isAnswerCorrect;
       setIsCorrect(updatedIsCorrect);
-
+      localStorage.setItem('MatchingMatrix', JSON.stringify(updatedUserAnswers))
+      localStorage.setItem("userAnswers" ,JSON.stringify(updatedIsCorrect))
       setAttempts((prevAttempts) => prevAttempts + 1);
     }
   };
@@ -87,13 +82,6 @@ const MatchingMatrix = ({ correctAudio, incorrectAudio, isMuted }) => {
     setIsCorrect(initialIsCorrect);
     setAttempts(0);
   };
-
-  // Save data to localStorage whenever userAnswers or attempts change
-  useEffect(() => {
-    localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-    localStorage.setItem('isCorrect', JSON.stringify(isCorrect));
-    localStorage.setItem('attempts', attempts.toString());
-  }, [userAnswers, isCorrect, attempts]);
 
   const draggableItems = useMemo(
     () =>
@@ -119,8 +107,10 @@ const MatchingMatrix = ({ correctAudio, incorrectAudio, isMuted }) => {
           <div className=' shadow-inner shadow-orange-200 flex flex-col gap-6 p-3 m-3'>
             {questions.map((data) => (
               <div className='flex justify-between' key={data.id}>
+                <div>
+                <h1>{`Q.${data.id}: ${data.question}`}</h1>
+                </div>
                 <DroppableArea
-                  label={`Q.${data.id}: ${data.question}`}
                   questionId={data.id}
                   onDrop={(answer) => handleDrop(answer, data.id)}
                 >
@@ -128,8 +118,8 @@ const MatchingMatrix = ({ correctAudio, incorrectAudio, isMuted }) => {
                     <div
                       className={`w-40 h-14 border ${
                         isCorrect[data.id - 1]
-                          ? 'border-green-800'
-                          : 'border-red-500'
+                          ? "Correct"
+                          : 'Incorrect'
                       }  w-40 h-14 border-none m-2 shadow-md shadow-slate-600 flex justify-center items-center rounded-md font-semibold bg-gray-200`}
                     >
                       {userAnswers[data.id - 1]}
