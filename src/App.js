@@ -5,7 +5,6 @@ import Container from './components/Container';
 import questionData from "./utils/db.json"
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import Test from './components/Test';
 function App() {
 
   return (
